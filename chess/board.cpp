@@ -17,13 +17,17 @@
 #include "square.hpp"
 #include "util.hpp"
 
-// Given a string encoded in FEN notation, construct a Board
-Board::Board(const std::string_view &fen) {
+void Board::init() {
   static bool has_init = false;
   if (!has_init) {
     init_all();
     has_init = true;
   }
+}
+
+// Given a string encoded in FEN notation, construct a Board
+Board::Board(const std::string_view &fen) {
+  Board::init();
 
   size_t fen_idx = 0, fen_size = fen.size();
 

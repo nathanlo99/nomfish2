@@ -131,6 +131,7 @@ public:
 
 public:
   // Methods
+  static void init();
   explicit Board(const std::string_view &fen = Board::start_fen);
 
   template <int side> bool is_square_attacked(const square_t sq) const;
