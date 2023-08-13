@@ -6,20 +6,12 @@
 #include <iostream>
 #include <unordered_map>
 
-inline void init_all() {
-  init_bitboards();
-  init_slider_attack_tables();
-  init_hash_keys();
-}
-
 template <bool print_moves = false> size_t perft(Board &board, int depth) {
-
   if (depth == 0)
     return 1;
 
   std::array<Move, Board::max_moves_in_position> moves;
-  Move *start_ptr = moves.begin(),
-       *end_ptr = board.antichess_legal_moves(start_ptr);
+  Move *start_ptr = moves.begin(), *end_ptr = board.legal_moves(start_ptr);
   if (depth == 1)
     return end_ptr - start_ptr;
 
@@ -42,11 +34,11 @@ template <bool print_moves = false> size_t perft(Board &board, int depth) {
 }
 
 int main() {
-  Board board;
+  Board board(Board::start_fen);
   std::cout << board << std::endl;
 
   const auto start_time = get_time_ms();
-  const size_t perft_result = perft<true>(board, 7);
+  const size_t perft_result = perft<true>(board, 6);
   const auto end_time = get_time_ms();
   const auto total_time = end_time - start_time;
 

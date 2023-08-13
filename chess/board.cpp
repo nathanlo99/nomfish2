@@ -534,6 +534,8 @@ bool Board::is_drawn_by_fifty_move() const {
 
 int Board::repeat_count() const {
   int repeat_count = 0;
+  // We have to make this check in case the FEN specifies a large 50-move
+  // number, further back than we actually have history for
   const size_t start = std::max(0, static_cast<int>(m_ply) - m_fifty_move);
   for (size_t entry = start; entry < m_ply; ++entry) {
     if (m_history[entry].hash == m_hash)

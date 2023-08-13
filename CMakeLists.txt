@@ -16,4 +16,4 @@ include_directories(nomfish PUBLIC . tests)
 
 add_executable(nomfish main.cpp ${SOURCES})
 # set_target_properties(nomfish PROPERTIES COMPILE_FLAGS "-DLOG")
-set_target_properties(nomfish PROPERTIES COMPILE_FLAGS "-DNDEBUG -DLOG_DIR=\\\"${CMAKE_SOURCE_DIR}/debug_logs/\\\" -DTABLEBASE_DIR=\\\"${CMAKE_SOURCE_DIR}/tablebases/\\\"")
+set_target_properties(nomfish PROPERTIES COMPILE_FLAGS "-DNDEBUG")
